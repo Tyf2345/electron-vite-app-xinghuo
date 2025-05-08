@@ -1,8 +1,13 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { IContextMenuTemplate } from '../main/menu/contextMenu'
 
 // Custom APIs for renderer
-const api = {}
+export const api = {
+  // 右键菜单
+  showContextMenu: (menuData: IContextMenuTemplate[]): Promise<IContextMenuTemplate['value']> =>
+    ipcRenderer.invoke('show-context-menu', menuData)
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
