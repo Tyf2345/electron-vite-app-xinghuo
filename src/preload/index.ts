@@ -5,7 +5,7 @@ import { IContextMenuTemplate } from '../main/menu/contextMenu'
 // Custom APIs for renderer
 export const api = {
   // 右键菜单
-  showContextMenu: (menuData: IContextMenuTemplate[]): Promise<IContextMenuTemplate['value']> =>
+  showContextMenu: (menuData: IContextMenuTemplate[]): Promise<void> =>
     ipcRenderer.invoke('show-context-menu', menuData)
 }
 
