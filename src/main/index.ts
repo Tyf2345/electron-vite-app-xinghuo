@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { applicationMenu } from './menu/applicationMenu'
 import { contextMenu } from './menu/contextMenu'
+import { dockMenu } from './menu/dockMenu'
 
 function createWindow(): void {
   // Create the browser window.
@@ -57,6 +58,7 @@ app.whenReady().then(() => {
   createWindow()
   applicationMenu()
   contextMenu()
+  dockMenu()
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
