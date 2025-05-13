@@ -5,6 +5,7 @@ import icon from '../../resources/icon.png?asset'
 import { applicationMenu } from './menu/applicationMenu'
 import { contextMenu } from './menu/contextMenu'
 import { dockMenu } from './menu/dockMenu'
+import { trayMenu } from './menu/trayMenu'
 
 function createWindow(): void {
   // Create the browser window.
@@ -55,10 +56,16 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
+  // 创建窗口
   createWindow()
+  // 创建应用菜单
   applicationMenu()
+  // 创建上下文菜单
   contextMenu()
+  // 创建 dock （mac专属）
   dockMenu()
+  // 创建托盘(tray)
+  trayMenu()
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
