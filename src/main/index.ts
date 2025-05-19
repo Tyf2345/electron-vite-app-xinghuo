@@ -2,25 +2,48 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { handleMessageIPC } from './message'
 
 function createWindow(): void {
   // Create the browser window.
-  console.log('test');
-  
-  const mainWindow = new BrowserWindow({
+
+  const windowConfig = {
     width: 900,
     height: 670,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
+      nodeIntegration: true,
+      contextIsolated: true,
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
+  }
+  const mainWindow = new BrowserWindow(windowConfig)
+  const window1 = new BrowserWindow({
+    ...windowConfig,
+    width: 300,
+    height: 300
   })
+  window1.loadFile(join(process.cwd(), 'src', 'renderer', 'window1.html'))
 
+  const window2 = new BrowserWindow({
+    ...windowConfig,
+    width: 300,
+    height: 300
+  })
+  window2.loadFile(join(process.cwd(), 'src', 'renderer', 'window2.html'))
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+    // 消息IPC入口函数
+    handleMessageIPC(mainWindow, window1, window2)
+  })
+  window1.on('ready-to-show', () => {
+    window1.show()
+  })
+  window2.on('ready-to-show', () => {
+    window2.show()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>窗口一</title>
+  </head>
+  <body>
+    <button id="btn">点击发送`窗口一`到窗口二</button>
+  </body>
+  <script>
+    document.querySelector('#btn').onclick = function () {
+      window.api.sendRendererToWindow2('窗口一')
+    }
+  </script>
+</html>

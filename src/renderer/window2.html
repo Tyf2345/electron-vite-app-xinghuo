@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>窗口二</title>
+  </head>
+  <body>
+    <p id="txt"></p>
+  </body>
+  <script>
+    window.api.getRendererWindow1Data((data) => {
+      document.querySelector('#txt').innerHTML = '来自' + data
+    })
+  </script>
+</html>

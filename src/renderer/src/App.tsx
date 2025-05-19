@@ -1,34 +1,37 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import { useEffect } from 'react'
 
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
+  useEffect(() => {
+    window.api.findFilesByMessageMainToRenderer((files) => {
+      console.log('主线程发来的数据', files)
+    })
+  }, [])
   return (
     <>
       <h1>欢迎来到Electron世界</h1>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
+      <button
+        onClick={() => {
+          window.api.sayHi()
+        }}
+      >
+        sayHi
+      </button>
+
+      <button
+        onClick={() => {
+          console.log('cpu个数：', window.api.os.cpus().length)
+        }}
+      >
+        获取cpu个数
+      </button>
+      <button
+        onClick={async () => {
+          const files = await window.api.findFilesByMessageRendererToMain()
+          console.log('文件信息：', files)
+        }}
+      >
+        渲染进程 -`{'>'}` 主进程 获取 根目录下文件和文件夹
+      </button>
     </>
   )
 }
