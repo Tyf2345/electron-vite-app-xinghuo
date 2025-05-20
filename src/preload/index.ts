@@ -1,8 +1,13 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { LogLevel } from 'electron-log'
 
 // Custom APIs for renderer
-const api = {}
+export const api = {
+  // IPC日志通信
+  logger: (level: LogLevel, ...message: any[]): Promise<void> =>
+    ipcRenderer.invoke('logger', level, ...message)
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

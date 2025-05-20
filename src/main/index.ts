@@ -2,11 +2,29 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import Logger from 'electron-log'
+import { createLogs } from '../common/logs'
 
+//添加日志
+createLogs()
+Logger.info('主进程的测试日志')
+Logger.warn('主进程的测试日志')
+Logger.silly('主进程的测试日志')
+Logger.debug('主进程的测试日志')
+Logger.verbose('主进程的测试日志')
+Logger.error({
+  name: '张三'
+})
+Logger.error([
+  {
+    name: '张三'
+  },
+  {
+    name: '李四'
+  }
+])
 function createWindow(): void {
   // Create the browser window.
-  console.log('test');
-  
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
