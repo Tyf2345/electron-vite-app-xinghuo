@@ -2,11 +2,13 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { getConfig } from '../common/config/configuration'
+// import './database/sqllite'
+console.log('running：' + process.env.NODE_RUNNING)
+console.log('yaml数据：' + getConfig('name'))
 
 function createWindow(): void {
   // Create the browser window.
-  console.log('test');
-  
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
