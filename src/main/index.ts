@@ -2,11 +2,31 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import Logger from 'electron-log'
-import { createLogs } from '../common/logs'
+// import Logger from 'electron-log'
+import { winstonLogger as Logger } from '../common/logs/winstonLogger'
+// import { createLogs } from '../common/logs'
+
+// for (let i = 0; i < 20000; i++) {
+//   Logger.warn('测试切割功能日志' + i)
+// }
 
 //添加日志
-createLogs()
+Logger.warn('主进程的测试日志')
+Logger.silly('主进程的测试日志')
+Logger.debug('主进程的测试日志')
+Logger.verbose('主进程的测试日志')
+Logger.error({
+  name: '张三'
+})
+Logger.error([
+  {
+    name: '张三'
+  },
+  {
+    name: '李四'
+  }
+])
+
 Logger.info('主进程的测试日志')
 Logger.warn('主进程的测试日志')
 Logger.silly('主进程的测试日志')

@@ -3,4 +3,6 @@ dist
 out
 .DS_Store
 .eslintcache
+/_logs
+/logs
 *.log*
