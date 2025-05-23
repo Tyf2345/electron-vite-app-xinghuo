@@ -1,1 +1,11 @@
 name: electron-dev-app
+
+SQLite:
+  path: database/sqlite
+
+
+
+
+
+
+  

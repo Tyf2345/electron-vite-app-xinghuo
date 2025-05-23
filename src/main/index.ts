@@ -3,10 +3,42 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { getConfig } from '../common/config/configuration'
+import { testCreate, testGetAll, testUpdate, testDel } from './controller'
 // import './database/sqllite'
 console.log('running：' + process.env.NODE_RUNNING)
 console.log('yaml数据：' + getConfig('name'))
 
+console.log('--------------数据库操作开始-----------------')
+
+console.log('查询初始数据库数据')
+console.log(testGetAll())
+
+console.log('--------------------------------')
+
+console.log('新增数据')
+
+testCreate('张三')
+testCreate('李四')
+console.log('查询新增后的数据')
+console.log(testGetAll())
+
+console.log('--------------------------------')
+
+console.log('更新数据')
+testUpdate(1, '王五')
+console.log('查询修改后的数据')
+console.log(testGetAll())
+
+console.log('--------------------------------')
+
+console.log('删除数据')
+testDel([1])
+console.log('查询删除后的数据')
+console.log(testGetAll())
+
+console.log('--------------------------------')
+
+console.log('--------------数据库操作结束-----------------')
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
