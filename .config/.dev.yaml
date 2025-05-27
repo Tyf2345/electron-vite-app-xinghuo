@@ -3,9 +3,14 @@ name: electron-dev-app
 SQLite:
   path: database/sqlite
 
-
-
-
-
-
-  
+MySQL:
+  # 主机
+  host: localhost
+  # 用户名
+  user: root
+  # 密码
+  password: Tyf12345
+  # 数据库名称
+  database: electron-dev-app
+  # 最大连接数
+  connectionLimit: 10
