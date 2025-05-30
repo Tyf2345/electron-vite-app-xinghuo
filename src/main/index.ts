@@ -1,51 +1,17 @@
+import "reflect-metadata"
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { getConfig } from '../common/config/configuration'
-// import { testCreate, testGetAll, testUpdate, testDel } from './controller'
-import {
-  createMysqlUser as testCreate,
-  getMysqlUser as testGetAll,
-  updateMysqlUser as testUpdate,
-  deleteMysqlUser as testDel
-} from './controller'
-// import './database/sqllite'
+
+import { EmployeeController } from './controller'
 console.log('running：' + process.env.NODE_RUNNING)
 console.log('yaml数据：' + getConfig('name'))
 
+// 测试
+new EmployeeController().print()
 
-console.log('--------------数据库操作开始-----------------')
-
-console.log('查询初始数据库数据')
-console.log(await testGetAll())
-
-console.log('--------------------------------')
-
-console.log('新增数据')
-
-await testCreate('张三')
-await testCreate('李四')
-console.log('查询新增后的数据')
-console.log(await testGetAll())
-
-console.log('--------------------------------')
-
-console.log('更新数据')
-await testUpdate(1, '王五')
-console.log('查询修改后的数据')
-console.log(await testGetAll())
-
-console.log('--------------------------------')
-
-console.log('删除数据')
-await testDel([1])
-console.log('查询删除后的数据')
-console.log(await testGetAll())
-
-console.log('--------------------------------')
-
-console.log('--------------数据库操作结束-----------------')
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
