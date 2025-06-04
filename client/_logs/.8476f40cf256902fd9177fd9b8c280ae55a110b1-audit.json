@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/tyf/Desktop/juejin/electron-vite-app-xinghuo/client/_logs/.8476f40cf256902fd9177fd9b8c280ae55a110b1-audit.json",
+    "files": [
+        {
+            "date": 1748953632871,
+            "name": "/Users/tyf/Desktop/juejin/electron-vite-app-xinghuo/client/_logs/app-2025-06-03.log",
+            "hash": "b43ea5ea25a62b453b7e93173aac1c67daf67f65cc67a120b55e6f07329b80e2"
+        },
+        {
+            "date": 1749006022639,
+            "name": "/Users/tyf/Desktop/juejin/electron-vite-app-xinghuo/client/_logs/app-2025-06-04.log",
+            "hash": "3aefad0b0c85b97d80bbdb2cc6b287c64ca8c2772b08c412d013e21aeba628fb"
+        }
+    ],
+    "hashType": "sha256"
+}

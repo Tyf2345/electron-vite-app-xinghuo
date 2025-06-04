@@ -1,0 +1,12 @@
+test: 测试yaml
+
+SQL_CONFIG:
+  SQLite:
+    # 数据库类型
+    type: sqlite
+    # 数据库文件路径
+    database: database/sqlite
+    # 是否同步数据库
+    # synchronize: true
+    # # 是否打印日志
+    logging: true
