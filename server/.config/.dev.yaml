@@ -1,0 +1,25 @@
+# 开发环境配置
+server:
+  # 端口
+  port: 3000
+  # 主机
+  host: 0.0.0.0
+
+SQL_CONFIG:
+  mysql:
+    # 数据库类型
+    type: mysql
+    # 数据库地址
+    host: localhost
+    # 数据库端口
+    port: 3306
+    # 数据库用户名
+    username: root
+    # 数据库密码
+    password: Tyf123456
+    # 是否同步数据库
+    synchronize: true
+    # 自动加载实体
+    autoLoadEntities: true
+    # # 是否打印日志
+    logging: true
