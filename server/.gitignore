@@ -1,0 +1,9 @@
+node_modules
+build
+dist
+dist
+node_modules
+out
+.DS_Store
+.eslintcache
+*.log*
