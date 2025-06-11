@@ -16,10 +16,29 @@ SQL_CONFIG:
     # 数据库用户名
     username: root
     # 数据库密码
-    password: Tyf123456
+    password: Tyf12345
+    # 数据库名称
+    database: xinghuo-dev
     # 是否同步数据库
     synchronize: true
     # 自动加载实体
     autoLoadEntities: true
     # # 是否打印日志
     logging: true
+
+# 邮箱配置
+EMAIL_CONFIG:
+  # 邮箱服务
+  host: smtp.qq.com
+  # 端口
+  port: 465
+  # 是否加密
+  secure: true
+  # 过期时间
+  ttl: 300000
+  # 认证
+  auth:
+    # 邮箱
+    user: QQ邮箱
+    # 密码
+    pass: 授权码

@@ -3,9 +3,15 @@ import { AppModule } from './app.module';
 import { VersioningType } from '@nestjs/common';
 import { getConfig } from './common/config/configuration';
 import { generateDoc } from './doc';
+import { initializeTransactionalContext } from 'typeorm-transactional';
 
 async function bootstrap() {
   const { port, host } = getConfig('server');
+
+  // 开启事务
+  initializeTransactionalContext();
+
+  // 创建应用
   const app = await NestFactory.create(AppModule);
 
   // 版本控制

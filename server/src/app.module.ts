@@ -12,8 +12,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { addTransactionalDataSource } from 'typeorm-transactional';
+import { UserModule } from './user/user.module';
+import { EmailModule } from './email/email.module';
+import { CacheModule } from '@nestjs/cache-manager';
 @Module({
   imports: [
+    // 缓存模块
+    CacheModule.register({
+      isGlobal: true,
+    }),
     // 数据库模块
     TypeOrmModule.forRootAsync({
       useFactory() {
@@ -40,6 +47,8 @@ import { addTransactionalDataSource } from 'typeorm-transactional';
       // 加载配置
       load: [getConfig],
     }),
+    UserModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [

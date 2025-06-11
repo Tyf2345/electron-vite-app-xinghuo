@@ -28,14 +28,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
     // 获取状态码
     const status = exception.getStatus() || HttpStatus.NOT_FOUND;
-
     // http异常
     response.status(status).send({
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-      message: exception.message,
+      message: Array.isArray(exception.getResponse()['message'])
+        ? exception.getResponse()['message'][0]
+        : exception.getResponse()['message'],
     });
-    return;
   }
 }
